@@ -12,12 +12,23 @@ connectDB();
 
 //cors for protection
 
+/*
 const corsOptions= {
     origin: process.env.ALLOWED_CLIENTS.split(',') 
     //website for cross server like localhost, heroku-git
 
 }
 app.use(cors(corsOptions));
+*/
+
+//new cors allowance
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 //template engine
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
